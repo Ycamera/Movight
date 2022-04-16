@@ -52,6 +52,7 @@ export const CastDetailComponent = (props) => {
 					<div className="cast-image">{picture}</div>
 					<div className="box2">
 						<p className="cast-name">{name}</p>
+						<div className="cast-image-max-width">{picture}</div>
 						<p className="birthday">生年月日：{birthday}</p>
 						<p className="place-of-birth">出身：{place_of_birth}</p>
 					</div>
