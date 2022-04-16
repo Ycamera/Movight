@@ -1,0 +1,121 @@
+.CastsPage {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.casts {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: white;
+	height: 500px;
+	width: 100%;
+	max-width: 1600px;
+
+	opacity: 0;
+	animation: cast-list-Appear 0.5s ease-out forwards;
+	animation-delay: 1s;
+
+	overflow: hidden;
+}
+@keyframes cast-list-Appear {
+	100% {
+		opacity: 1;
+	}
+}
+
+.casts .title {
+	position: relative;
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.casts .title::before,
+.casts .title::after {
+	content: "";
+	position: absolute;
+	background-color: rgb(179, 179, 179);
+	width: 100px;
+	height: 1px;
+	inset: 0;
+	margin: auto;
+}
+.casts .title::before {
+	left: -225px;
+}
+.casts .title::after {
+	right: -225px;
+}
+
+.casts-list {
+	position: relative;
+
+	display: flex;
+	align-items: flex-end;
+	width: 90%;
+	height: 350px;
+
+	overflow-x: auto;
+	transform: translateY(300px);
+	opacity: 0;
+
+	animation: castsAppear 0.8s ease-out forwards;
+	animation-delay: 0.8s;
+}
+
+@keyframes castsAppear {
+	50% {
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.casts .cast {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+
+	margin: 0 20px 30px;
+
+	background-color: white;
+	border-radius: 10px;
+
+	box-shadow: 0 2px 8px rgb(179, 179, 179);
+	cursor: pointer;
+
+	transition: 0.3s;
+}
+
+.casts .cast:hover {
+	transform: scale(1.05);
+}
+
+.casts .cast p {
+	font-size: 1rem;
+	margin-bottom: 10px;
+}
+.casts .cast img,
+.casts .cast .no-image {
+	display: block;
+	position: relative;
+	width: 150px;
+	height: 225px;
+
+	background-color: rgb(236, 236, 236);
+}
+
+.casts .cast .no-image::after {
+	content: "No image";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
