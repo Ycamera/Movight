@@ -17,21 +17,21 @@ export const MovieDetail = (props) => {
 	//日本語の映画情報を取得
 	const getMovieInformationJP = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=`
 		);
 	};
 
 	//英語の映画情報を取得
 	const getMovieInformationUS = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=`
 		);
 	};
 
 	//映画のビデオを取得
 	const getMovieVideoUrl = async () => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=10751404afe78938788c4116a75c27c2&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=`
 		);
 		let video = data.results;
 
