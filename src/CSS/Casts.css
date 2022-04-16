@@ -119,3 +119,17 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+
+@media (max-width: 600px) {
+	.casts .cast img,
+	.casts .cast .no-image {
+		width: 130px;
+		height: 195px;
+	}
+	.casts-list {
+		height: 300px;
+	}
+	.casts {
+		height: 450px;
+	}
+}

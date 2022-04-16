@@ -247,3 +247,41 @@
 .cast-movie:hover {
 	transform: scale(1.05);
 }
+
+@media (min-width: 769px) {
+	.cast-detail .cast-image-max-width {
+		display: none;
+	}
+}
+@media (max-width: 768px) {
+	.cast-detail .cast-image {
+		display: none;
+	}
+	.cast-detail .cast-image-max-width img {
+		position: relative;
+		width: 300px;
+		height: 450px;
+		border-radius: 10px;
+	}
+
+	.movie-content .movies-appeared {
+		margin: 0 0 30px;
+	}
+}
+
+@media (max-width: 600px) {
+	.cast-detail .cast-image-max-width img {
+		width: 150px;
+		height: 225px;
+	}
+
+	.cast-detail .box2 .cast-name {
+		font-size: 1.3rem;
+	}
+	.cast-detail .box2 p {
+		font-size: 1rem;
+	}
+	.movie-content .movies-appeared {
+		font-size: 1.2rem;
+	}
+}
