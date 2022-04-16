@@ -34,7 +34,7 @@ export const TopPage = (props) => {
 	//上映中の映画を取得してstateに代入
 	const getNowPlayingMovies = () => {
 		getMovies(
-			"https://api.themoviedb.org/3/movie/now_playing?api_key=&region=JP&language=ja&page=1"
+			"https://api.themoviedb.org/3/movie/now_playing?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1"
 		).then((data) => {
 			setMoviesNowPlaying(data);
 		});
@@ -65,6 +65,7 @@ export const TopPage = (props) => {
 
 		resetPages();
 		setMovieDetailAppear(true);
+		window.scrollTo(0, 0);
 	};
 
 	//映画詳細ページのキャストをクリックすると　キャスト詳細ページへ遷移
@@ -75,12 +76,14 @@ export const TopPage = (props) => {
 
 		resetPages();
 		setCastDetailAppear(true);
+		window.scrollTo(0, 0);
 	};
 
 	//Topページへ遷移
 	const handleToTopPage = () => {
 		resetPages();
 		setTopPageAppear(true);
+		window.scrollTo(0, 0);
 	};
 
 	//headerのロゴをクリックすると　トップページへ遷移

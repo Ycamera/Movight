@@ -17,21 +17,21 @@ export const MovieDetail = (props) => {
 	//日本語の映画情報を取得
 	const getMovieInformationJP = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2&language=ja`
 		);
 	};
 
 	//英語の映画情報を取得
 	const getMovieInformationUS = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2`
 		);
 	};
 
 	//映画のビデオを取得
 	const getMovieVideoUrl = async () => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=10751404afe78938788c4116a75c27c2&language=ja`
 		);
 		let video = data.results;
 
@@ -79,7 +79,9 @@ export const MovieDetail = (props) => {
 			title: title,
 			poster_path: poster_path,
 			overview: overview,
-			release_date: release_date,
+			release_date: release_date
+				? release_date.replace("-", "年").replace("-", "月") + "日"
+				: false,
 			video: videoUrl,
 		});
 	}, [title, poster_path, release_date, overview, videoUrl]);
