@@ -29,11 +29,11 @@ export const MovieDetailComponent = (props) => {
 		video = (
 			<div className="video youtube" key={key}>
 				<div className="video-height">
+					<p>Trailer</p>
 					<div className="video-content">
-						<p>Trailer</p>
 						<iframe
-							width="1260"
-							height="708.75"
+							width="1280"
+							height="720"
 							src={`https://www.youtube.com/embed/${key}`}
 							title="YouTube video player"
 							allow="fullscreen"
@@ -53,6 +53,7 @@ export const MovieDetailComponent = (props) => {
 				<div className="move">{picture}</div>
 				<div className="box2">
 					<p className="movie-title">{title}</p>
+					<div className="picture-max-width">{picture}</div>
 					<p className="release-date">上映開始日：{release_date}</p>
 					<p className="overview">
 						概要
