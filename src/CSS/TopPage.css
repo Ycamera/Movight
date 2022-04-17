@@ -27,7 +27,9 @@
 .movie-list .movie p {
 	margin-bottom: 25px;
 }
-.movie-list .movie img {
+.movie-list .movie img,
+.movie-list .movie .no-image {
+	position: relative;
 	width: 250px;
 	height: 375px;
 	border-radius: 10px;
@@ -35,8 +37,17 @@
 	transition: 0.3s;
 	cursor: pointer;
 	box-shadow: 0 2px 8px rgb(179, 179, 179);
+	background-color: rgb(236, 236, 236);
+}
+.movie-list .movie .no-image::after {
+	content: "No image";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
-.movie-list .movie img:hover {
+.movie-list .movie img:hover,
+.movie-list .movie .no-image:hover {
 	transform: scale(1.05);
 }

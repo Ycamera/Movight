@@ -150,7 +150,7 @@
 
 	opacity: 0;
 	animation: cast-movies-Appear 0.8s ease-out forwards;
-	animation-delay: 0.7s;
+	animation-delay: 0.5s;
 }
 
 @keyframes cast-movies-Appear {
@@ -186,7 +186,7 @@
 	padding-top: 20px;
 
 	animation: cast-movies-Appear 0.8s ease-out forwards;
-	animation-delay: 0.8s;
+	animation-delay: 0.5s;
 	overflow: hidden;
 }
 
@@ -270,7 +270,8 @@
 }
 
 @media (max-width: 600px) {
-	.cast-detail .cast-image-max-width img {
+	.cast-detail .cast-image-max-width img,
+	.cast.no-image {
 		width: 150px;
 		height: 225px;
 	}
