@@ -13,9 +13,13 @@ export const MovieDetailComponent = (props) => {
 	);
 	//説明
 	const overview = movie.overview ? (
-		movie.overview
+		<p className="overview">
+			概要
+			<br />
+			{movie.overview}
+		</p>
 	) : (
-		<div className="no-overview">No data</div>
+		<div className="no-overview"> </div>
 	);
 	//上映開始日
 	const release_date = movie.release_date ? movie.release_date : "No data";
@@ -50,16 +54,13 @@ export const MovieDetailComponent = (props) => {
 		<div className="movie-detail-page">
 			<div className="box">
 				<div className="space"></div>
+
 				<div className="move">{picture}</div>
 				<div className="box2">
 					<p className="movie-title">{title}</p>
 					<div className="picture-max-width">{picture}</div>
-					<p className="release-date">上映開始日：{release_date}</p>
-					<p className="overview">
-						概要
-						<br />
-						{overview}
-					</p>
+					<p className="release-date">公開日：{release_date}</p>
+					{overview}
 				</div>
 			</div>
 			{video}

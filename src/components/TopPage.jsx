@@ -7,20 +7,34 @@ export const TopPageComponent = (props) => {
 
 	//topPageが更新されたら、映画リストを更新して代入
 	if (topPage) {
+		const movies = topPage.map((movie) => {
+			return (
+				<div className="movie" key={movie.id}>
+					<p>{movie.title}</p>
+					{movie.poster_path ? (
+						<img
+							id={movie.id}
+							src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+							onClick={onClick}
+						/>
+					) : (
+						<div
+							className="movie no-image"
+							id={movie.id}
+							onClick={onClick}
+						></div>
+					)}
+				</div>
+			);
+		});
+
 		movieList = (
 			<div className="movie-list">
-				{topPage.map((movie) => {
-					return (
-						<div className="movie" key={movie.id}>
-							<p>{movie.title}</p>
-							<img
-								id={movie.id}
-								src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-								onClick={onClick}
-							/>
-						</div>
-					);
-				})}
+				{movies.length > 0 ? (
+					movies
+				) : (
+					<p className="no-movies">該当なし</p>
+				)}
 			</div>
 		);
 	}
