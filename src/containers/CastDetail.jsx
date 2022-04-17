@@ -21,14 +21,14 @@ export const CastDetail = (props) => {
 	//日本語でキャストの詳細を取得
 	const getCastInformation = async (cast_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/person/${cast_id}?api_key=`
+			`https://api.themoviedb.org/3/person/${cast_id}?api_key=10751404afe78938788c4116a75c27c2`
 		);
 	};
 
 	//英語でキャストの詳細を取得
 	const getCastInformationUS = async (cast_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/person/${cast_id}?api_key=`
+			`https://api.themoviedb.org/3/person/${cast_id}?api_key=10751404afe78938788c4116a75c27c2`
 		);
 	};
 
@@ -69,7 +69,7 @@ export const CastDetail = (props) => {
 	//キャストIDを渡すと出演映画の情報を取得して MovieData を更新
 	const getMovies = async (cast_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/person/${cast_id}/movie_credits?api_key=&language=ja`
+			`https://api.themoviedb.org/3/person/${cast_id}/movie_credits?api_key=10751404afe78938788c4116a75c27c2&language=ja`
 		);
 		//console.log(data.cast);
 

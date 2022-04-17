@@ -11,7 +11,7 @@ import { MovieDetail } from "./MovieDetail";
 import { CastDetail } from "./CastDetail";
 
 export const TopPage = (props) => {
-	const [moviesNowPlaying, setMoviesNowPlaying] = useState();
+	const [TopMovies, setTopMovies] = useState();
 
 	const [topPage, setTopPage] = useState();
 	const [topPageAppear, setTopPageAppear] = useState(true);
@@ -32,12 +32,16 @@ export const TopPage = (props) => {
 	};
 
 	//上映中の映画を取得してstateに代入
-	const getNowPlayingMovies = () => {
-		getMovies(
-			"https://api.themoviedb.org/3/movie/now_playing?api_key="
-		).then((data) => {
-			setMoviesNowPlaying(data);
+	const getTopMovies = (url) => {
+		getMovies(url).then((data) => {
+			setTopMovies(data);
 		});
+	};
+
+	const getNowPlayingMovies = () => {
+		getTopMovies(
+			"https://api.themoviedb.org/3/movie/now_playing?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1"
+		);
 	};
 
 	//初回読み込み時に上映映画の情報を取得
@@ -47,8 +51,8 @@ export const TopPage = (props) => {
 
 	//上映映画が更新されたらtopPageを更新
 	useEffect(() => {
-		setTopPage(moviesNowPlaying);
-	}, [moviesNowPlaying]);
+		setTopPage(TopMovies);
+	}, [TopMovies]);
 
 	//ページを全て非表示にする
 	const resetPages = () => {
@@ -90,6 +94,12 @@ export const TopPage = (props) => {
 	useEffect(() => {
 		if (props.page === "top") {
 			handleToTopPage();
+			getNowPlayingMovies();
+		} else if (props.page === "search") {
+			handleToTopPage();
+			getTopMovies(
+				`https://api.themoviedb.org/3/search/movie?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1&query=${props.searchWord}`
+			);
 		}
 	}, [props.page]);
 
