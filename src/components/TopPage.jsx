@@ -28,15 +28,12 @@ export const TopPageComponent = (props) => {
 			);
 		});
 
-		movieList = (
-			<div className="movie-list">
-				{movies.length > 0 ? (
-					movies
-				) : (
-					<p className="no-movies">該当なし</p>
-				)}
-			</div>
-		);
+		movieList =
+			movies.length > 0 ? (
+				<div className="movie-list">{movies}</div>
+			) : (
+				<p className="no-movies">該当なし</p>
+			);
 	}
 
 	let content;
