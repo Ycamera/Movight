@@ -106,7 +106,7 @@
 	align-items: center;
 	width: 100%;
 
-	padding: 50px 0;
+	padding: 50px 0 150px;
 	background-color: white;
 
 	overflow: hidden;
@@ -140,6 +140,7 @@
 	align-items: center;
 
 	max-width: 1600px;
+	width: 100%;
 }
 
 .movie-content .movies-appeared {
@@ -176,14 +177,19 @@
 }
 
 .movie-content .movies {
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 300px);
+	grid-template-rows: repeat(auto-fit, 420px);
+
+	justify-content: center;
+	align-items: center;
+
 	gap: 60px 0;
+
 	width: 100%;
 	transform: translateY(500px);
 	opacity: 0;
-	padding-top: 20px;
+	padding: 20px 0;
 
 	animation: cast-movies-Appear 0.8s ease-out forwards;
 	animation-delay: 0.5s;
