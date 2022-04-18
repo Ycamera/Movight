@@ -40,7 +40,7 @@ export const TopPage = (props) => {
 
 	const getNowPlayingMovies = () => {
 		getTopMovies(
-			"https://api.themoviedb.org/3/movie/now_playing?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1"
+			"https://api.themoviedb.org/3/movie/now_playing?api_key=&region=JP&language=ja&page=1"
 		);
 	};
 
@@ -104,7 +104,7 @@ export const TopPage = (props) => {
 		} else if (props.page === "search") {
 			handleToTopPage();
 			getTopMovies(
-				`https://api.themoviedb.org/3/search/movie?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1&query=${props.searchWord}`
+				`https://api.themoviedb.org/3/search/movie?api_key=&region=JP&language=ja&page=1&query=${props.searchWord}`
 			);
 		} else if (props.page === "movieDetail") {
 			toMovieDetailPage(props.movie_id);
