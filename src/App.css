@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playball&family=Yeseva+One&display=swap");
+
 * {
 	margin: 0;
 	padding: 0;
@@ -7,6 +9,8 @@
 	position: relative;
 }
 header {
+	font-family: "Yeseva One", cursive;
+
 	position: sticky;
 	display: flex;
 	justify-content: center;
@@ -19,7 +23,7 @@ header {
 	z-index: 100;
 }
 
-header a {
+header .logo a {
 	position: absolute;
 	display: flex;
 	justify-content: center;
@@ -42,6 +46,7 @@ header .logo {
 	left: 50%;
 	transform: translateX(-50%);
 	height: 100%;
+	z-index: 10;
 }
 
 header {
@@ -61,7 +66,7 @@ header .logo a {
 
 @keyframes header {
 	100% {
-		height: 80px;
+		height: 70px;
 	}
 }
 
@@ -98,13 +103,14 @@ header .logo a span {
 	}
 
 	100% {
-		transform: translateY(0px);
+		transform: translateY(0);
 		opacity: 1;
 	}
 }
 
 header .logo a span .t {
 	animation: logoRotate 3.5s ease-out forwards;
+
 	animation-delay: 1s;
 }
 
@@ -118,36 +124,30 @@ header .logo a span .t {
 	}
 }
 
-@media (max-width: 600px) {
-	@keyframes header {
-		100% {
-			height: 60px;
-		}
-	}
-	@keyframes logo {
-		100% {
-			left: 50%;
-		}
-	}
-}
 nav {
 	position: relative;
 
 	display: flex;
 	align-items: center;
-	justify-content: center;
-
+	justify-content: flex-end;
+	width: 100%;
 	height: 100%;
 
 	top: 0;
+	z-index: 5;
 }
 nav,
 #nav-button {
+	-webkit-perspective: 500px;
+	perspective: 500px;
 	opacity: 0;
-	animation: nav-appear 2s ease-out forwards;
-	animation-delay: 3s;
+	animation: nav-appear 1s ease-out forwards;
+	animation-delay: 3.3s;
 }
 
+#nav-button {
+	z-index: 10;
+}
 @keyframes nav-appear {
 	50% {
 		opacity: 0;
@@ -155,6 +155,15 @@ nav,
 	100% {
 		opacity: 1;
 	}
+}
+nav form {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	left: 50%;
+	transform: translateX(-50%);
 }
 nav form input {
 	height: 30px;
@@ -176,6 +185,8 @@ nav form #submit {
 	border-radius: 0;
 	text-align: center;
 
+	cursor: pointer;
+
 	background-color: rgb(79, 79, 79);
 }
 nav form #submit:hover {
@@ -195,8 +206,111 @@ nav form #submit:hover {
 	top: -20px;
 	z-index: -1;
 }
+nav ul {
+	right: 30px;
+}
+nav ul,
+nav ul li {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+nav ul {
+	height: 60px;
+	width: 400px;
+}
 
-@media (max-width: 800px) {
+nav ul li {
+	position: relative;
+	width: 200px;
+	height: 100%;
+}
+nav ul li a {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+	height: 100%;
+
+	color: white;
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: bold;
+
+	letter-spacing: 0.1rem;
+}
+
+nav li a span {
+	position: absolute;
+	width: 120px;
+	height: 40px;
+}
+nav li a span::before,
+nav li a span::after {
+	content: "";
+	position: absolute;
+	background-color: white;
+	transition: transform 0.3s;
+}
+
+nav li a span:nth-child(1)::before,
+nav li a span:nth-child(2)::before {
+	width: 1px;
+	height: 100%;
+	transform: scaleY(0);
+	top: 0;
+	transform-origin: top;
+}
+nav li a span:nth-child(1)::before {
+	left: 0;
+}
+nav li a span:nth-child(2)::before {
+	transition-delay: 0.3s;
+	right: 0;
+}
+
+nav li a:hover span:nth-child(1)::before,
+nav li a:hover span:nth-child(2)::before {
+	transform: scaleY(1);
+	transform-origin: bottom;
+}
+nav li a:hover span:nth-child(2)::before {
+	transition-delay: 0.3s;
+}
+
+nav li a span:nth-child(1)::after,
+nav li a span:nth-child(2)::after {
+	width: 100%;
+	height: 1px;
+	transform: scaleX(0);
+	left: 0;
+	transform-origin: right;
+}
+nav li a span:nth-child(1)::after {
+	transition-delay: 0.3s;
+	top: 0;
+}
+nav li a span:nth-child(2)::after {
+	bottom: 0;
+}
+
+nav li a:hover span:nth-child(1)::after,
+nav li a:hover span:nth-child(2)::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+nav li a:hover span:nth-child(1)::after {
+	transition-delay: 0.3s;
+}
+
+@media (max-width: 1200px) {
+	nav.fade {
+		transition: all 0.5s;
+	}
 	#nav-button {
 		position: absolute;
 		right: 10px;
@@ -211,7 +325,7 @@ nav form #submit:hover {
 		position: relative;
 		display: block;
 
-		width: 75%;
+		width: 30px;
 		height: 3px;
 
 		top: 50%;
@@ -230,18 +344,18 @@ nav form #submit:hover {
 		content: "";
 		position: absolute;
 
-		width: 90%;
+		width: 35px;
 		height: 100%;
 
-		left: 0;
 		right: 0;
 		margin: 0 auto;
 	}
 	#nav-button span::before {
-		top: -13px;
+		top: -11px;
 	}
 	#nav-button span::after {
-		top: 13px;
+		width: 25px;
+		top: 11px;
 	}
 	nav.active + #nav-button span {
 		transform: translate(-50%, -50%) rotate(45deg) rotateY(180deg);
@@ -257,20 +371,34 @@ nav form #submit:hover {
 		top: 0;
 	}
 	nav {
-		transition: 0.5s;
+		top: -100%;
 		width: 100%;
-		z-index: -2;
+		height: 220px;
+		flex-direction: column-reverse;
+		justify-content: center;
+
+		z-index: -50;
 		opacity: 0;
+		transition: 0s;
 	}
+
 	nav.active {
 		top: 100%;
 		opacity: 1;
 		background-color: rgb(30, 30, 30);
 	}
 	nav form {
+		position: relative;
 		transition: 0.5s;
 		opacity: 0;
 		padding: 0;
+
+		inset: 0;
+		margin: 0 auto;
+		top: 35px;
+		transform: translateX(0);
+
+		transition: top 0s, opacity 0.5s;
 	}
 	nav.active form {
 		opacity: 1;
@@ -278,8 +406,46 @@ nav form #submit:hover {
 	nav #submit {
 		padding: 0;
 	}
-}
 
+	nav ul {
+		top: 20px;
+		right: 0;
+		width: 100%;
+	}
+	nav li {
+		width: 100%;
+		height: 70px;
+	}
+}
+@media (max-width: 600px) {
+	@keyframes header {
+		100% {
+			height: 60px;
+		}
+	}
+	@keyframes logo {
+		100% {
+			left: 50%;
+		}
+	}
+	nav {
+		top: -300%;
+		height: 450px;
+		justify-content: center;
+	}
+	nav form {
+		top: 150px;
+	}
+	nav ul {
+		flex-direction: column;
+		display: flex;
+		justify-content: center;
+		top: 80px;
+	}
+	nav ul li a {
+		height: 60px;
+	}
+}
 @media (max-width: 350px) {
 	nav form {
 		position: relative;
@@ -287,10 +453,36 @@ nav form #submit:hover {
 		justify-content: space-around;
 		align-items: center;
 		flex-direction: column;
-		top: 20px;
+
 		height: 90px;
 	}
 	nav {
-		height: 150px;
+		top: -400%;
+		height: 500px;
+	}
+	nav form {
+		top: 165px;
+	}
+	nav ul {
+		top: 105px;
+	}
+	#nav-button {
+		right: 0;
+	}
+	#nav-button span {
+		width: 25px;
+	}
+	#nav-button span::before {
+		width: 30px;
+	}
+	#nav-button span::after {
+		width: 20px;
+	}
+
+	#nav-button span::before {
+		top: -8px;
+	}
+	#nav-button span::after {
+		top: 8px;
 	}
 }
