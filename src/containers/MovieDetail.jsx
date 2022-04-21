@@ -18,21 +18,21 @@ export const MovieDetail = (props) => {
 	//日本語の映画情報を取得
 	const getMovieInformationJP = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=&language=ja`
 		);
 	};
 
 	//英語の映画情報を取得
 	const getMovieInformationUS = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=`
 		);
 	};
 
 	//映画のビデオを取得
 	const getMovieVideoUrl = async (movie_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=10751404afe78938788c4116a75c27c2&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=&language=ja`
 		);
 		let video = data.results;
 
@@ -93,7 +93,7 @@ export const MovieDetail = (props) => {
 	const [recommendMovies, setRecommendMovies] = useState();
 	const getRecommendations = async (movie_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/recommendations?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
+			`https://api.themoviedb.org/3/movie/${movie_id}/recommendations?api_key=&language=ja&page=1`
 		);
 		setRecommendMovies(data.results);
 		//getTest(movie_id);
@@ -102,7 +102,7 @@ export const MovieDetail = (props) => {
 	/* テスト用のデータ取得コード
 	const getTest = async (movie_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/top_rated?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=&language=ja&page=1`
 		);
 		console.log(data);
 	};
