@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { MovieDetailComponent } from "../components/MovieDetail";
 import { Casts } from "./Casts";
 import { fetchData } from "../components/fetchData";
+import { ShowMovies } from ".//ShowMovies";
 import "../CSS/MovieDetail.css";
 
 export const MovieDetail = (props) => {
-	const movie_id = props.movie_id;
+	const [movie_id, setMovie_id] = useState();
 
 	const [movieDetail, setMovieDetail] = useState();
 	const [title, setTitle] = useState();
@@ -17,21 +18,21 @@ export const MovieDetail = (props) => {
 	//日本語の映画情報を取得
 	const getMovieInformationJP = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2&language=ja`
 		);
 	};
 
 	//英語の映画情報を取得
 	const getMovieInformationUS = async (movie_id) => {
 		return await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=`
+			`https://api.themoviedb.org/3/movie/${movie_id}?api_key=10751404afe78938788c4116a75c27c2`
 		);
 	};
 
 	//映画のビデオを取得
-	const getMovieVideoUrl = async () => {
+	const getMovieVideoUrl = async (movie_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=10751404afe78938788c4116a75c27c2&language=ja`
 		);
 		let video = data.results;
 
@@ -46,16 +47,14 @@ export const MovieDetail = (props) => {
 				setOverview(movieDataUS["overview"]);
 			}
 		}
-
 		async function video() {
 			setVideoUrl(await getMovieVideoUrl(movie["id"]));
 		}
-
 		Promise.all([video(), overview()]);
 	};
 
 	//日本語映画の情報を取得して更新
-	const setMovieInfo = async (id) => {
+	const setMovieInfo = async (movie_id) => {
 		const movie = await getMovieInformationJP(movie_id);
 
 		setTitle(movie.title);
@@ -64,14 +63,18 @@ export const MovieDetail = (props) => {
 		setOverview(movie.overview);
 
 		movieInfoCheck(movie);
+		getRecommendations(movie_id);
 	};
 
 	//idが更新されたら映画の詳細を movieDetail stateへ代入
 	useEffect(() => {
+		let movie_id = props.movie_id;
+		setMovie_id(movie_id);
+
 		if (movie_id) {
 			setMovieInfo(movie_id);
 		}
-	}, [movie_id]);
+	}, [props.movie_id]);
 
 	//映画の内容が更新されたら詳細を movieDetail state へ代入
 	useEffect(() => {
@@ -86,15 +89,34 @@ export const MovieDetail = (props) => {
 		});
 	}, [title, poster_path, release_date, overview, videoUrl]);
 
-	//appear が true の場合コンテンツを表示
+	//おすすめ映画の情報を取得
+	const [recommendMovies, setRecommendMovies] = useState();
+	const getRecommendations = async (movie_id) => {
+		const data = await fetchData(
+			`https://api.themoviedb.org/3/movie/${movie_id}/recommendations?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
+		);
+		setRecommendMovies(data.results);
+		//getTest(movie_id);
+	};
 
+	/* テスト用のデータ取得コード
+	const getTest = async (movie_id) => {
+		const data = await fetchData(
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
+		);
+		console.log(data);
+	};
+	*/
+
+	//appear が true の場合コンテンツを表示
 	return (
 		<div className="movie-detail">
 			<MovieDetailComponent movieDetail={movieDetail} />
-			<Casts
-				movie_id={movie_id}
-				onClick={props.castOnClick}
-				setTmpCastsInfo={props.setTmpCastsInfo}
+			<Casts movie_id={movie_id} onClick={props.castOnClick} />
+			<ShowMovies
+				movieData={recommendMovies}
+				title="おすすめ映画"
+				onClick={props.movieOnClick}
 			/>
 		</div>
 	);

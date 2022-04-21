@@ -1,6 +1,8 @@
 import React, {
 	useState,
-	useEffect
+	useEffect,
+	forwardRef,
+	useImperativeHandle,
 } from "react";
 import { fetchData } from "../components/fetchData";
 import { TopPageComponent } from "../components/TopPage";
@@ -19,8 +21,9 @@ export const TopPage = (props) => {
 	const [movie_id, setMovie_id] = useState();
 
 	const [castDetailAppear, setCastDetailAppear] = useState(false);
-	const [tmpCastsInfo, setTmpCastsInfo] = useState();
 	const [cast_id, setCast_id] = useState();
+
+	const [movieInfoForTitle, setMovieInfoForTitle] = useState();
 
 	//URLを渡すとトップ画面の映画情報を取得
 	const getMovies = async (url) => {
@@ -29,16 +32,52 @@ export const TopPage = (props) => {
 		return data.results;
 	};
 
-	//上映中の映画を取得してstateに代入
+	//上映中の映画を取得して TopMovies に代入
 	const getTopMovies = (url) => {
+		setTopMovies("");
 		getMovies(url).then((data) => {
 			setTopMovies(data);
 		});
 	};
+	//検索された映画とキャストの情報を取得して　TopMovies に代入
+	const getSearchedMoviesCasts = async (keyword) => {
+		let data = {};
 
+		//映画データ 取得
+		await getMovies(
+			`https://api.themoviedb.org/3/search/movie?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1&query=${keyword}`
+		).then((info) => (data = info));
+
+		//キャストデータ 取得
+		await getMovies(
+			`https://api.themoviedb.org/3/search/person?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1&query=${keyword}`
+		).then((info) => {
+			if (info) {
+				const num = Object.keys(data).length;
+				Object.keys(info).forEach((key, index) => {
+					data[num + index] = info[key];
+				});
+			}
+		});
+		setTopMovies(data);
+	};
+
+	//最近の上映映画情報を取得　TopMovies に代入
 	const getNowPlayingMovies = () => {
 		getTopMovies(
-			"https://api.themoviedb.org/3/movie/now_playing?api_key=&region=JP&language=ja&page=1"
+			"https://api.themoviedb.org/3/movie/now_playing?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1"
+		);
+	};
+	//人気な映画の情報を取得　TopMovies　に代入
+	const getPopularMovies = () => {
+		getTopMovies(
+			`https://api.themoviedb.org/3/movie/popular?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
+		);
+	};
+	//高評価な映画の情報を取得　TopMovies　に代入
+	const getTopRatedMovies = () => {
+		getTopMovies(
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
 		);
 	};
 
@@ -69,7 +108,8 @@ export const TopPage = (props) => {
 		setMovie_id(movie_id);
 
 		resetPages();
-		setMovieDetailAppear(true);
+		setTimeout(() => setMovieDetailAppear(true), 10);
+
 		window.scrollTo(0, 0);
 	}
 
@@ -77,6 +117,7 @@ export const TopPage = (props) => {
 	const handleCastOnClick = (e) => {
 		const cast_id = e.target.id;
 		props.castOnClick(e);
+
 		toCastDetailPage(cast_id);
 	};
 	function toCastDetailPage(cast_id) {
@@ -94,44 +135,70 @@ export const TopPage = (props) => {
 		window.scrollTo(0, 0);
 	};
 
-	//headerのロゴをクリックすると　トップページへ遷移
+	//header nav をクリックすると　トップページへ遷移
+	const [tmpPage, setTmpPage] = useState();
 	useEffect(() => {
 		if (props.page === "top") {
 			handleToTopPage();
-			getNowPlayingMovies();
+			if (props.movies === "upcoming" && tmpPage !== "upcoming") {
+				getNowPlayingMovies();
+				setTmpPage("upcoming");
+			} else if (props.movies === "popular" && tmpPage !== "popular") {
+				getPopularMovies();
+				setTmpPage("popular");
+			} else if (props.movies === "toprated" && tmpPage !== "toprated") {
+				getTopRatedMovies();
+				setTmpPage("toprated");
+			}
 		} else if (props.page === "search") {
 			handleToTopPage();
-			getTopMovies(
-				`https://api.themoviedb.org/3/search/movie?api_key=&region=JP&language=ja&page=1&query=${props.searchWord}`
-			);
+			getSearchedMoviesCasts(props.searchWord);
+
+			setTmpPage("");
 		} else if (props.page === "movieDetail") {
 			toMovieDetailPage(props.movie_id);
+
+			setTmpPage("");
 		} else if (props.page === "castDetail") {
 			toCastDetailPage(props.cast_id);
+
+			setTmpPage("");
 		}
-	}, [props.page]);
+	}, [props.page, props.movies]);
+
+	//TopPageの映画文字の前に　"〇〇" な映画　という情報を付加する
+	useEffect(() => {
+		if (tmpPage === "upcoming") {
+			setMovieInfoForTitle("最新の");
+		} else if (tmpPage === "popular") {
+			setMovieInfoForTitle("人気な");
+		} else if (tmpPage === "toprated") {
+			setMovieInfoForTitle("高評価な");
+		} else {
+			setMovieInfoForTitle("");
+		}
+	}, [tmpPage]);
 
 	return (
 		<div>
 			{topPageAppear && (
 				<TopPageComponent
 					topPage={topPage}
-					onClick={handleMovieOnClick}
+					movieOnClick={handleMovieOnClick}
+					castOnClick={handleCastOnClick}
+					searchWordForAppear={props.searchWordForAppear}
+					movieInfoForTitle={movieInfoForTitle}
 				/>
 			)}
 			{movieDetailAppear && (
 				<MovieDetail
 					movie_id={movie_id}
 					castOnClick={handleCastOnClick}
-					setTmpCastsInfo={setTmpCastsInfo}
+					movieOnClick={handleMovieOnClick}
 				/>
 			)}
 			{castDetailAppear && (
-				<CastDetail
-					cast_id={cast_id}
-					tmpCastsInfo={tmpCastsInfo}
-					onClick={handleMovieOnClick}
-				/>
+				<CastDetail cast_id={cast_id} onClick={handleMovieOnClick} />
 			)}
 		</div>
 	);

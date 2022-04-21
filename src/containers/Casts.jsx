@@ -10,27 +10,18 @@ export const Casts = (props) => {
 	);
 
 	//キャストのデータを取得
-	const fetchCasts = async () => {
+	const fetchCasts = async (movie_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=10751404afe78938788c4116a75c27c2&language=ja`
 		);
 		setCasts(data.cast);
-		processTmpCasts(data.cast);
 	};
 
 	//映画IDが更新されたらキャストデータを取得
 	useEffect(() => {
-		movie_id && fetchCasts();
-	}, [movie_id]);
-
-	// Casts の配列を渡すとIDごとのオブジェクトを tmpCastsInfo に代入
-	const processTmpCasts = (arr) => {
-		const returnObj = {};
-		arr.forEach((obj) => {
-			returnObj[obj.id] = obj;
-		});
-		props.setTmpCastsInfo(returnObj);
-	};
+		let movie_id = props.movie_id;
+		movie_id && fetchCasts(movie_id);
+	}, [props.movie_id]);
 
 	let content;
 	if (casts) {
