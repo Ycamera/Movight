@@ -1,0 +1,238 @@
+.movie-content.cast-page {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+
+	padding: 35px 0 150px;
+	background-color: white;
+
+	overflow: hidden;
+}
+
+.movie-content .movies-height {
+	position: absolute;
+
+	height: 100%;
+	width: 100%;
+	inset: 0;
+	margin: auto;
+
+	background-color: rgb(240, 240, 240);
+
+	transform: translateY(600px);
+
+	animation: movie-height 0.8s ease-out forwards;
+	animation-delay: 0.2s;
+}
+
+@keyframes movie-height {
+	100% {
+		transform: translateY(0);
+	}
+}
+.movie-content .movies-max-width {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+	max-width: 1600px;
+	width: 100%;
+}
+
+.movie-content .movies-appeared {
+	position: relative;
+	margin: 0 0 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+
+	opacity: 0;
+	animation: cast-movies-Appear 0.8s ease-out forwards;
+	animation-delay: 0.5s;
+}
+
+@keyframes cast-movies-Appear {
+	100% {
+		opacity: 1;
+	}
+}
+
+.movie-content .movies-appeared::before,
+.movie-content .movies-appeared::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.movie-content .movies-appeared::before {
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	padding: 0 10px;
+	background-color: rgb(240, 240, 240);
+}
+.movie-content .movies-appeared::after {
+	background-color: rgb(179, 179, 179);
+	z-index: -2;
+	width: 100%;
+	padding: 0.5px 100px;
+}
+
+.movie-content .movies {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 300px);
+	grid-template-rows: repeat(auto-fit, 420px);
+
+	justify-content: center;
+	align-items: center;
+
+	gap: 60px 0;
+
+	width: 100%;
+	transform: translateY(500px);
+	opacity: 0;
+	padding: 20px 0;
+
+	animation: cast-movies-Appear 0.8s ease-out forwards;
+	animation-delay: 0.5s;
+	overflow: hidden;
+}
+
+@keyframes cast-movies-Appear {
+	50% {
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.cast-movie p.title {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+	font-weight: bold;
+	margin: auto;
+
+	width: 100%;
+}
+
+.cast-movie {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	width: 230px;
+	height: 390px;
+	margin: 0 auto;
+
+	padding: 0 10px 10px 10px;
+
+	background-color: white;
+	border-radius: 10px;
+
+	box-shadow: 0 2px 8px rgb(179, 179, 179);
+
+	transition: 0.3s;
+
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.cast-movie img,
+.cast-movie .no-image {
+	position: relative;
+	width: 220px;
+	height: 310px;
+	border-radius: 10px;
+
+	background-color: rgb(236, 236, 236);
+}
+.cast-movie .no-image::after {
+	content: "No image";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.cast-movie:hover {
+	transform: scale(1.05);
+}
+
+@media (min-width: 769px) {
+}
+@media (max-width: 768px) {
+	.movie-content .movies {
+		grid-template-columns: repeat(auto-fit, 250px);
+
+		gap: 50px 40px;
+	}
+	.movie-content .movies-appeared {
+		font-size: 1.2rem;
+		margin: 0 0 10px;
+	}
+}
+
+@media (max-width: 768px) {
+	.CastsPage {
+		padding-bottom: 50px;
+	}
+	.cast-movie {
+		box-sizing: border-box;
+	}
+	.movie-content .movies {
+		grid-template-columns: repeat(auto-fit, 200px);
+		grid-template-rows: repeat(auto-fit, 300px);
+		gap: 50px 40px;
+		padding: 30px 0 15px;
+	}
+
+	.cast-movie {
+		width: 200px;
+		height: 300px;
+	}
+	.cast-movie img,
+	.cast-movie .no-image {
+		width: 150px;
+		height: 225px;
+	}
+
+	.cast-movie p.title {
+		font-size: 0.8rem;
+	}
+}
+@media (max-width: 460px) {
+	.CastsPage {
+		padding-bottom: 50px;
+	}
+	.cast-movie {
+		box-sizing: border-box;
+	}
+	.movie-content .movies {
+		grid-template-columns: repeat(auto-fit, 150px);
+		grid-template-rows: repeat(auto-fit, 225px);
+		gap: 50px 30px;
+		padding: 50px 0 0;
+	}
+
+	.cast-movie {
+		width: 150px;
+		height: 260px;
+	}
+	.cast-movie img,
+	.cast-movie .no-image {
+		width: 120px;
+		height: 180px;
+	}
+
+	.cast-movie p.title {
+		font-size: 0.8rem;
+	}
+}
