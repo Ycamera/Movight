@@ -12,7 +12,7 @@ export const Casts = (props) => {
 	//キャストのデータを取得
 	const fetchCasts = async (movie_id) => {
 		const data = await fetchData(
-			`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=10751404afe78938788c4116a75c27c2&language=ja`
+			`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=&language=ja`
 		);
 		setCasts(data.cast);
 	};
