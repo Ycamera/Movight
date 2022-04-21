@@ -54,7 +54,6 @@ export const MovieDetailComponent = (props) => {
 		<div className="movie-detail-page">
 			<div className="box">
 				<div className="space"></div>
-
 				<div className="move">{picture}</div>
 				<div className="box2">
 					<p className="movie-title">{title}</p>
