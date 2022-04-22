@@ -1,3 +1,8 @@
+
+
+![スクリーンショット 2022-04-23 6 11 56](https://user-images.githubusercontent.com/96303806/164794400-6f6b3b7d-aedd-4871-9775-82df30566e6c.png)
+
+
 <h1>概要</h1>
 
 一週間ほど勉強したReactの成果としてSPAサイトを製作してみました。
@@ -17,6 +22,3 @@
 ・最新映画
 ・人気映画
 ・高評価な映画
-
-
-![スクリーンショット 2022-04-23 6 11 56](https://user-images.githubusercontent.com/96303806/164794400-6f6b3b7d-aedd-4871-9775-82df30566e6c.png)
