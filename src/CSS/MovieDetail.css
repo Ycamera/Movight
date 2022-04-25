@@ -116,8 +116,8 @@
 
 .movie-detail-page .video:not(.no-video) {
 	width: 100%;
-	max-height: 860px;
-	height: 70vw;
+	max-height: 660px;
+	height: 72vw;
 }
 
 .movie-detail-page .video-height {
@@ -140,7 +140,16 @@
 	position: absolute;
 	font-size: 2rem;
 	font-weight: bold;
-	top: 30px;
+	top: 20px;
+	opacity: 0;
+	transition: 0.5s;
+	animation: trailer-appear 1s ease-out forwards;
+	animation-delay: 0.8s;
+}
+@keyframes trailer-appear {
+	100% {
+		opacity: 1;
+	}
 }
 
 .movie-detail-page .video p::before,
@@ -182,9 +191,9 @@
 	inset: 0;
 	margin: auto;
 	width: 95%;
-	max-width: 1280px;
+	max-width: 960px;
 	height: 100%;
-	max-height: 720px;
+	max-height: 540px;
 }
 
 @media (min-width: 769px) {

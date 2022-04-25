@@ -22,7 +22,7 @@
 
 	background-color: rgb(240, 240, 240);
 
-	transform: translateY(600px);
+	transform: translateY(800px);
 
 	animation: movie-height 0.8s ease-out forwards;
 	animation-delay: 0.2s;
@@ -84,18 +84,18 @@
 
 .movie-content .movies {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, 300px);
-	grid-template-rows: repeat(auto-fit, 420px);
+	grid-template-columns: repeat(auto-fit, 210px);
+	grid-template-rows: repeat(auto-fit, 330px);
 
 	justify-content: center;
 	align-items: center;
 
-	gap: 60px 0;
+	gap: 60px 50px;
 
 	width: 100%;
 	transform: translateY(500px);
 	opacity: 0;
-	padding: 20px 0;
+	padding: 30px 0 15px;
 
 	animation: cast-movies-Appear 0.8s ease-out forwards;
 	animation-delay: 0.5s;
@@ -120,17 +120,18 @@
 	font-size: 1rem;
 	font-weight: bold;
 	margin: auto;
-
+	font-size: 0.8rem;
 	width: 100%;
 }
 
 .cast-movie {
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
-	width: 230px;
-	height: 390px;
+	width: 210px;
+	height: 330px;
 	margin: 0 auto;
 
 	padding: 0 10px 10px 10px;
@@ -149,8 +150,8 @@
 .cast-movie img,
 .cast-movie .no-image {
 	position: relative;
-	width: 220px;
-	height: 310px;
+	width: 180px;
+	height: 270px;
 	border-radius: 10px;
 
 	background-color: rgb(236, 236, 236);
@@ -166,60 +167,30 @@
 	transform: scale(1.05);
 }
 
-@media (min-width: 769px) {
-}
 @media (max-width: 768px) {
-	.movie-content .movies {
-		grid-template-columns: repeat(auto-fit, 250px);
-
-		gap: 50px 40px;
-	}
 	.movie-content .movies-appeared {
 		font-size: 1.2rem;
 		margin: 0 0 10px;
 	}
-}
-
-@media (max-width: 768px) {
+	.movie-content .movies {
+		gap: 50px 40px;
+	}
 	.CastsPage {
 		padding-bottom: 50px;
 	}
 	.cast-movie {
 		box-sizing: border-box;
-	}
-	.movie-content .movies {
-		grid-template-columns: repeat(auto-fit, 200px);
-		grid-template-rows: repeat(auto-fit, 300px);
-		gap: 50px 40px;
-		padding: 30px 0 15px;
-	}
-
-	.cast-movie {
-		width: 200px;
-		height: 300px;
-	}
-	.cast-movie img,
-	.cast-movie .no-image {
-		width: 150px;
-		height: 225px;
-	}
-
-	.cast-movie p.title {
-		font-size: 0.8rem;
 	}
 }
 @media (max-width: 460px) {
 	.CastsPage {
 		padding-bottom: 50px;
 	}
-	.cast-movie {
-		box-sizing: border-box;
-	}
 	.movie-content .movies {
 		grid-template-columns: repeat(auto-fit, 150px);
-		grid-template-rows: repeat(auto-fit, 225px);
-		gap: 50px 30px;
-		padding: 50px 0 0;
+		grid-template-rows: repeat(auto-fit, 260px);
+		gap: 30px 30px;
+		padding: 20px 0 0;
 	}
 
 	.cast-movie {
