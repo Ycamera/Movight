@@ -1,9 +1,4 @@
-import React, {
-	useState,
-	useEffect,
-	forwardRef,
-	useImperativeHandle,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { fetchData } from "../components/fetchData";
 import { TopPageComponent } from "../components/TopPage";
 import "../CSS/TopPage.css";
@@ -45,12 +40,12 @@ export const TopPage = (props) => {
 
 		//映画データ 取得
 		await getMovies(
-			`https://api.themoviedb.org/3/search/movie?api_key=&region=JP&language=ja&page=1&query=${keyword}`
+			`https://api.themoviedb.org/3/search/movie?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1&query=${keyword}`
 		).then((info) => (data = info));
 
 		//キャストデータ 取得
 		await getMovies(
-			`https://api.themoviedb.org/3/search/person?api_key=&region=JP&language=ja&page=1&query=${keyword}`
+			`https://api.themoviedb.org/3/search/person?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1&query=${keyword}`
 		).then((info) => {
 			if (info) {
 				const num = Object.keys(data).length;
@@ -65,19 +60,19 @@ export const TopPage = (props) => {
 	//最近の上映映画情報を取得　TopMovies に代入
 	const getNowPlayingMovies = () => {
 		getTopMovies(
-			"https://api.themoviedb.org/3/movie/now_playing?api_key=&region=JP&language=ja&page=1"
+			"https://api.themoviedb.org/3/movie/now_playing?api_key=10751404afe78938788c4116a75c27c2&region=JP&language=ja&page=1"
 		);
 	};
 	//人気な映画の情報を取得　TopMovies　に代入
 	const getPopularMovies = () => {
 		getTopMovies(
-			`https://api.themoviedb.org/3/movie/popular?api_key=&language=ja&page=1`
+			`https://api.themoviedb.org/3/movie/popular?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
 		);
 	};
 	//高評価な映画の情報を取得　TopMovies　に代入
 	const getTopRatedMovies = () => {
 		getTopMovies(
-			`https://api.themoviedb.org/3/movie/top_rated?api_key=&language=ja&page=1`
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=10751404afe78938788c4116a75c27c2&language=ja&page=1`
 		);
 	};
 

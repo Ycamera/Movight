@@ -23,6 +23,8 @@ export const ShowMovies = (props) => {
 
 	if (movieData && movieData.length === 21) {
 		movieData.shift();
+		movieData.shift();
+		movieData.shift();
 	}
 
 	let movieContent;
