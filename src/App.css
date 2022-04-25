@@ -176,13 +176,14 @@ nav form #search {
 	box-shadow: 0 2px 8px rgb(179, 179, 179);
 }
 nav form #submit {
+	border-radius: 0 2px 2px 0;
 	position: relative;
 	left: 2px;
 	border: 0;
 	width: 50px;
 	height: 30px;
 	color: white;
-	border-radius: 0;
+
 	text-align: center;
 
 	cursor: pointer;
@@ -244,67 +245,102 @@ nav ul li a {
 	letter-spacing: 0.1rem;
 }
 
-nav li a span {
+nav li a span.hover {
 	position: absolute;
 	width: 120px;
 	height: 40px;
 }
-nav li a span::before,
-nav li a span::after {
+nav li a span.hover::before,
+nav li a span.hover::after {
 	content: "";
 	position: absolute;
 	background-color: white;
 	transition: transform 0.3s;
 }
 
-nav li a span:nth-child(1)::before,
-nav li a span:nth-child(2)::before {
+nav li a span.hover:nth-child(2)::before,
+nav li a span.hover:nth-child(3)::before {
 	width: 1px;
 	height: 100%;
 	transform: scaleY(0);
 	top: 0;
 	transform-origin: top;
 }
-nav li a span:nth-child(1)::before {
+nav li a span.hover:nth-child(2)::before {
 	left: 0;
 }
-nav li a span:nth-child(2)::before {
+nav li a span.hover:nth-child(3)::before {
 	transition-delay: 0.3s;
 	right: 0;
 }
 
-nav li a:hover span:nth-child(1)::before,
-nav li a:hover span:nth-child(2)::before {
+nav li a:hover span.hover:nth-child(2)::before,
+nav li a:hover span.hover:nth-child(3)::before {
 	transform: scaleY(1);
 	transform-origin: bottom;
 }
-nav li a:hover span:nth-child(2)::before {
+nav li a:hover span.hover:nth-child(3)::before {
 	transition-delay: 0.3s;
 }
 
-nav li a span:nth-child(1)::after,
-nav li a span:nth-child(2)::after {
+nav li a span.hover:nth-child(2)::after,
+nav li a span.hover:nth-child(3)::after {
 	width: 100%;
 	height: 1px;
 	transform: scaleX(0);
 	left: 0;
 	transform-origin: right;
 }
-nav li a span:nth-child(1)::after {
+nav li a span.hover:nth-child(2)::after {
 	transition-delay: 0.3s;
 	top: 0;
 }
-nav li a span:nth-child(2)::after {
+nav li a span.hover:nth-child(3)::after {
 	bottom: 0;
 }
 
-nav li a:hover span:nth-child(1)::after,
-nav li a:hover span:nth-child(2)::after {
+nav li a:hover span.hover:nth-child(2)::after,
+nav li a:hover span.hover:nth-child(3)::after {
 	transform: scaleX(1);
 	transform-origin: left;
 }
-nav li a:hover span:nth-child(1)::after {
+nav li a:hover span.hover:nth-child(2)::after {
 	transition-delay: 0.3s;
+}
+
+nav li a .word,
+nav li a .word .default,
+nav li a .word .change {
+	overflow: hidden;
+	position: relative;
+	width: 120px;
+	height: 40px;
+}
+nav li a .word .default,
+nav li a .word .change {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	inset: 0;
+	margin: auto;
+}
+nav li a .word span {
+	transition: 0.5s;
+	transition-delay: calc(0.05s + 0.05s * var(--delay));
+}
+nav li a:hover .word .default span {
+	transform: translateY(-50px);
+	transition-delay: calc(0.05s * var(--delay));
+}
+
+nav li a .word .change span {
+	transform: translateY(50px);
+	transition-delay: calc(0.05s * var(--delay));
+}
+nav li a:hover .word .change span {
+	transform: translateY(0);
+	transition-delay: calc(0.05s + 0.05s * var(--delay));
 }
 
 @media (max-width: 1200px) {

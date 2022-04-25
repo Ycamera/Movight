@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { TopPage, Top } from "./containers/TopPage.jsx";
+import { TopPage } from "./containers/TopPage.jsx";
 import { FooterNav } from "./containers/FooterNav";
+import { NavBar } from "./containers/NavBar";
 
 function App() {
 	//Pageと検索単語のリセット
@@ -239,43 +240,13 @@ function App() {
 					</a>
 				</div>
 				<div className="background"></div>
-
-				<nav className="fade">
-					<form onSubmit={handleSearchOnSubmit}>
-						<input
-							id="search"
-							type="text"
-							placeholder="映画 / キャスト"
-							onChange={handleSearchOnChange}
-						/>
-						<button id="submit" type="submit">
-							Search
-						</button>
-					</form>
-					<ul>
-						<li>
-							<a href="#" onClick={handleToTopOnClick}>
-								Latest
-								<span></span>
-								<span></span>
-							</a>
-						</li>
-						<li>
-							<a href="#" onClick={handleToTopPopularOnClick}>
-								Popular
-								<span></span>
-								<span></span>
-							</a>
-						</li>
-						<li>
-							<a href="#" onClick={handleToTopTopRatedOnClick}>
-								Top Rated
-								<span></span>
-								<span></span>
-							</a>
-						</li>
-					</ul>
-				</nav>
+				<NavBar
+					handleSearchOnSubmit={handleSearchOnSubmit}
+					handleSearchOnChange={handleSearchOnChange}
+					handleToTopOnClick={handleToTopOnClick}
+					handleToTopPopularOnClick={handleToTopPopularOnClick}
+					handleToTopTopRatedOnClick={handleToTopTopRatedOnClick}
+				/>
 				<div id="nav-button" onClick={handleNavOnClick}>
 					<span></span>
 				</div>
