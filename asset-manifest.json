@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Ycamera/Movight.git/static/css/main.8a1ca822.css",
+    "main.css": "/Ycamera/Movight.git/static/css/main.105fc73b.css",
     "main.js": "/Ycamera/Movight.git/static/js/main.212ad8fa.js",
     "index.html": "/Ycamera/Movight.git/index.html",
-    "main.8a1ca822.css.map": "/Ycamera/Movight.git/static/css/main.8a1ca822.css.map",
+    "main.105fc73b.css.map": "/Ycamera/Movight.git/static/css/main.105fc73b.css.map",
     "main.212ad8fa.js.map": "/Ycamera/Movight.git/static/js/main.212ad8fa.js.map"
   },
   "entrypoints": [
-    "static/css/main.8a1ca822.css",
+    "static/css/main.105fc73b.css",
     "static/js/main.212ad8fa.js"
   ]
 }
